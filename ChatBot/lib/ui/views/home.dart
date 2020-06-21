@@ -16,24 +16,24 @@ class _HomePageDialogflow extends State<HomePageDialogflow> {
   double top = 0.0;
 
   Widget _buildTextComposer() {
-    return new IconTheme(
-      data: new IconThemeData(color: Theme.of(context).accentColor),
-      child: new Container(
+    return  IconTheme(
+      data:  IconThemeData(color: Theme.of(context).accentColor),
+      child:  Container(
         margin: const EdgeInsets.symmetric(horizontal: 8.0),
-        child: new Row(
+        child: Row(
           children: <Widget>[
-            new Flexible(
-              child: new TextField(
+             Flexible(
+              child:  TextField(
                 controller: _textController,
                 onSubmitted: _handleSubmitted,
                 decoration:
-                    new InputDecoration.collapsed(hintText: "Start here"),
+                     InputDecoration.collapsed(hintText: "Start here"),
               ),
             ),
-            new Container(
-              margin: new EdgeInsets.symmetric(horizontal: 4.0),
-              child: new IconButton(
-                  icon: new Icon(Icons.send),
+             Container(
+              margin:  EdgeInsets.symmetric(horizontal: 4.0),
+              child:  IconButton(
+                  icon: Icon(Icons.send),
                   onPressed: () => _handleSubmitted(_textController.text)),
             ),
           ],
@@ -75,32 +75,35 @@ class _HomePageDialogflow extends State<HomePageDialogflow> {
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-      //backgroundColor: Color(0xFF2B292A),
+    return Scaffold(
       appBar: new AppBar(
         centerTitle: true,
         title: new Text("MyCustomer"),
       ),
-      body: new Column(children: <Widget>[
-        new Flexible(
-            child: new ListView.builder(
-          padding: new EdgeInsets.all(8.0),
-          reverse: true,
-          itemBuilder: (_, int index) => _messages[index],
-          itemCount: _messages.length,
-        )),
-        new Divider(height: 1.0),
-        new Container(
-          decoration: new BoxDecoration(
-            color: Colors.white,
+      body: Stack(children: <Widget>[Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("assets/background.jpg"),
+            fit: BoxFit.cover,)),
+        child: Column(children: <Widget>[
+          Flexible(
+              child: new ListView.builder(
+            padding: new EdgeInsets.all(8.0),
+            reverse: true,
+            itemBuilder: (_, int index) => _messages[index],
+            itemCount: _messages.length,
+          )),
+          new Divider(height: 1.0),
+          new Container(
+            decoration: new BoxDecoration(
+              color: Colors.white,
+            ),
+            child: _buildTextComposer(),
           ),
-          child: _buildTextComposer(),
-        ),
-      ]),
+        ]),
+      ),],)
     );
   }
-
-  
 }
 
 class ChatMessage extends StatelessWidget {
@@ -117,14 +120,14 @@ class ChatMessage extends StatelessWidget {
         child: new CircleAvatar(child: Icon(Icons.android)),
       ),
       new Expanded(
-        child: new Column(
+        child:  Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            new Text(this.name,
-                style: new TextStyle(fontWeight: FontWeight.bold)),
-            new Container(
+             Text(this.name,
+                style:  TextStyle(fontWeight: FontWeight.bold, color: Colors.blue)),
+             Container(
               margin: const EdgeInsets.only(top: 5.0),
-              child: new Text(text),
+              child:  Text(text, style: TextStyle(fontWeight: FontWeight.bold, color: Colors.blue[50]),),
             ),
           ],
         ),
@@ -138,10 +141,11 @@ class ChatMessage extends StatelessWidget {
         child: new Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: <Widget>[
-            new Text(this.name, style: Theme.of(context).textTheme.subtitle1),
+            new Text(this.name, style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white)),
             new Container(
               margin: const EdgeInsets.only(top: 5.0),
-              child: new Text(text),
+              //decoration: ,
+              child: new Text(text,style: TextStyle(fontWeight: FontWeight.bold, color: Colors.yellow)),
             ),
           ],
         ),
@@ -156,7 +160,6 @@ class ChatMessage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new Container(
-
       margin: const EdgeInsets.symmetric(vertical: 10.0),
       child: new Row(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -165,4 +168,3 @@ class ChatMessage extends StatelessWidget {
     );
   }
 }
-

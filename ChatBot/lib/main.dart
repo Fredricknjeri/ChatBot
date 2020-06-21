@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dialogflow/dialogflow_v2.dart';
 import 'package:ChatBot/ui/views/home.dart';
 
-void main() => runApp(new MyApp());
+void main() => runApp( MyApp());
 
 class MyApp extends StatelessWidget {
   @override
@@ -10,11 +10,13 @@ class MyApp extends StatelessWidget {
     return new MaterialApp(
       
       title: 'ChatBot',
-      theme: new ThemeData(
+      theme:  ThemeData(
         primarySwatch: Colors.blue,
+        accentColor: Colors.black
       ),
+      
       debugShowCheckedModeBanner: false,
-      home: new HomePageDialogflow(),
+      home:  HomePageDialogflow(),
     );
   }
 }
